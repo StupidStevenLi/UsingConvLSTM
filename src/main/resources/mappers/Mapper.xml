@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.lgy.usingconvlstm.Mappers.Mapper" >
+  <insert id="insertTrain">
+    INSERT INTO `model`.`train` (`ksid`, `filters`, `optimizer`, `epochs`, `batchsize`, `state`, `loss`)
+    VALUES (#{ksid}, #{filters}, #{optimizer}, #{epochs}, '1', '0', 'binary_crossentropy');
+  </insert>
+  <select id="getModelArgs" resultType="com.lgy.usingconvlstm.Entity.ModelArgs">
+    SELECT aid,k1,k2,k3,filters,optimizer,batchsize,epochs,loss,state
+    FROM model.train,model.kernel
+    where model.train.ksid=model.kernel.ksid
+    order by aid desc
+    limit 1;
+  </select>
+  <update id="update">
+    UPDATE `model`.`train` SET `state` = '1' WHERE (`aid` = #{aid});
+  </update>
+  <select id="count" resultType="java.lang.Integer">
+    SELECT count(*) FROM model.train where state = 0;
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
