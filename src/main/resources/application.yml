@@ -1,5 +1,5 @@
 spring:
-  # 配置DataSource
+  # 配置DataSource tensorboard --logdir=./logs --host=192.168.0.31
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
